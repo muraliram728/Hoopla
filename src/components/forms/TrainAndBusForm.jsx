@@ -82,6 +82,9 @@ export default function TicketForm() {
           from_name: form.fullName,
           from_email: form.email,
           message: `
+            Name: ${form.fullName}
+            Phone: ${form.phone}
+            Email: ${form.email}
             Transport: ${form.transport}
             Trip Type: ${form.tripType}
             From: ${form.from}
@@ -92,7 +95,6 @@ export default function TicketForm() {
             Passengers: ${form.passengers}
             Seat Preference: ${form.seatPref}
             Special Requests: ${form.specialReq}
-            Payment Method: ${form.paymentMethod}
           `,
         }),
       });

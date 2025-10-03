@@ -67,11 +67,14 @@ export default function FlightTicketForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "98d3d542-a92c-47e9-a739-362b5b7b2165", 
+          access_key: "98d3d542-a92c-47e9-a739-362b5b7b2165",
           subject: "New Flight Ticket Booking",
           from_name: form.fullName,
           from_email: form.email,
           message: `
+            Name: ${form.fullName}
+            Phone: ${form.phone}
+            Email: ${form.email}
             Trip Type: ${form.tripType}
             From: ${form.from}
             To: ${form.to}
@@ -81,7 +84,6 @@ export default function FlightTicketForm() {
             Passengers: ${form.passengers}
             Seat Preference: ${form.seatPref}
             Special Requests: ${form.specialReq}
-            Payment Method: ${form.paymentMethod}
           `,
         }),
       });
