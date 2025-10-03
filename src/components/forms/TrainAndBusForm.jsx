@@ -3,10 +3,13 @@ import "./FlightTicketForm.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-export default function FlightTicketForm() {
+export default function TicketForm() {
   const today = new Date().toISOString().split("T")[0];
 
+  const transportTypes = ["Train", "Bus"];
+
   const initialForm = {
+    transport: "Train",
     tripType: "oneway",
     from: "",
     to: "",
@@ -25,6 +28,16 @@ export default function FlightTicketForm() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ open: false, message: "", type: "success" });
+
+  const classOptions = {
+    Train: ["AC 1", "AC 2", "AC 3", "Sleeper", "General"],
+    Bus: ["Seater", "Sleeper", "AC", "Non-AC"],
+  };
+
+  const seatOptions = {
+    Train: ["Any", "Window", "Middle", "Upper", "Lower"],
+    Bus: ["Any", "Window", "Aisle"],
+  };
 
   function handleChange(e) {
     const { name, value, type } = e.target;
@@ -51,7 +64,7 @@ export default function FlightTicketForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+    setAlert({ open: true, type: "success", message: "Processing..." });
     const v = validate();
     setErrors(v);
     if (Object.keys(v).length > 0) {
@@ -62,16 +75,14 @@ export default function FlightTicketForm() {
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "82755d67-c2d3-4831-91b5-aed614aedab8", // Replace with your key
-          subject: "New Flight Ticket Booking",
+          access_key: "98d3d542-a92c-47e9-a739-362b5b7b2165",
+          subject: `New ${form.transport} Booking`,
           from_name: form.fullName,
           from_email: form.email,
           message: `
+            Transport: ${form.transport}
             Trip Type: ${form.tripType}
             From: ${form.from}
             To: ${form.to}
@@ -85,11 +96,9 @@ export default function FlightTicketForm() {
           `,
         }),
       });
-
       const data = await res.json();
-
       if (data.success) {
-        setAlert({ open: true, message: "Ticket request sent successfully!", type: "success" });
+        setAlert({ open: true, message: `${form.transport} booking sent successfully!`, type: "success" });
         setForm(initialForm);
         setErrors({});
       } else {
@@ -100,49 +109,43 @@ export default function FlightTicketForm() {
     }
   }
 
-  const handleCloseAlert = () => {
-    setAlert((prev) => ({ ...prev, open: false }));
-  };
-
   return (
     <div className="form-container">
-      <h2 className="form-title">Flight Ticket Booking</h2>
+      <h2 className="form-title">{form.transport} Booking</h2>
 
       <form onSubmit={handleSubmit} className="form">
+        {/* Transport Type */}
+        <div className="trip-type">
+          {transportTypes.map((t) => (
+            <label key={t}>
+              <input type="radio" name="transport" value={t} checked={form.transport === t} onChange={handleChange} />
+              {t}
+            </label>
+          ))}
+        </div>
+
         {/* Trip Type */}
         <div className="trip-type">
           <label>
-            <input
-              type="radio"
-              name="tripType"
-              value="oneway"
-              checked={form.tripType === "oneway"}
-              onChange={handleChange}
-            />
+            <input type="radio" name="tripType" value="oneway" checked={form.tripType === "oneway"} onChange={handleChange} />
             One-way
           </label>
           <label>
-            <input
-              type="radio"
-              name="tripType"
-              value="roundtrip"
-              checked={form.tripType === "roundtrip"}
-              onChange={handleChange}
-            />
+            <input type="radio" name="tripType" value="roundtrip" checked={form.tripType === "roundtrip"} onChange={handleChange} />
             Round-trip
           </label>
         </div>
 
-        {/* Flight Details */}
+        {/* Locations & Dates */}
         <div className="grid">
           <div>
             <label>From</label>
-            <input name="from" value={form.from} onChange={handleChange} placeholder="City or airport" />
+            <input name="from" value={form.from} onChange={handleChange} placeholder="City or station" />
             {errors.from && <p className="error">{errors.from}</p>}
           </div>
           <div>
             <label>To</label>
-            <input name="to" value={form.to} onChange={handleChange} placeholder="City or airport" />
+            <input name="to" value={form.to} onChange={handleChange} placeholder="City or station" />
             {errors.to && <p className="error">{errors.to}</p>}
           </div>
           <div>
@@ -150,25 +153,19 @@ export default function FlightTicketForm() {
             <input name="departDate" type="date" min={today} value={form.departDate} onChange={handleChange} />
             {errors.departDate && <p className="error">{errors.departDate}</p>}
           </div>
-          <div>
-            <label>Return</label>
-            <input
-              name="returnDate"
-              type="date"
-              min={form.departDate || today}
-              value={form.returnDate}
-              onChange={handleChange}
-              disabled={form.tripType === "oneway"}
-            />
-            {errors.returnDate && <p className="error">{errors.returnDate}</p>}
-          </div>
+          {form.tripType === "roundtrip" && (
+            <div>
+              <label>Return</label>
+              <input name="returnDate" type="date" min={form.departDate || today} value={form.returnDate} onChange={handleChange} />
+              {errors.returnDate && <p className="error">{errors.returnDate}</p>}
+            </div>
+          )}
           <div>
             <label>Class</label>
             <select name="travelClass" value={form.travelClass} onChange={handleChange}>
-              <option value="economy">Economy</option>
-              <option value="premium">Premium Economy</option>
-              <option value="business">Business</option>
-              <option value="first">First</option>
+              {classOptions[form.transport].map((cls) => (
+                <option key={cls} value={cls.toLowerCase().replace(" ", "_")}>{cls}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -178,13 +175,11 @@ export default function FlightTicketForm() {
           </div>
         </div>
 
-        <hr />
-
         {/* Passenger Info */}
         <div className="grid">
           <div>
             <label>Full Name</label>
-            <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="As on passport/ID" />
+            <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="As on ID" />
             {errors.fullName && <p className="error">{errors.fullName}</p>}
           </div>
           <div>
@@ -200,40 +195,26 @@ export default function FlightTicketForm() {
           <div>
             <label>Seat preference</label>
             <select name="seatPref" value={form.seatPref} onChange={handleChange}>
-              <option value="any">Any</option>
-              <option value="window">Window</option>
-              <option value="aisle">Aisle</option>
-              <option value="middle">Middle</option>
+              {seatOptions[form.transport].map((s) => (
+                <option key={s} value={s.toLowerCase()}>{s}</option>
+              ))}
             </select>
           </div>
         </div>
 
         <div>
           <label>Special requests</label>
-          <textarea
-            name="specialReq"
-            value={form.specialReq}
-            onChange={handleChange}
-            rows={3}
-            placeholder="Meal preference, wheelchair assistance, etc."
-          />
+          <textarea name="specialReq" value={form.specialReq} onChange={handleChange} rows={3} placeholder="Meal, assistance, etc." />
         </div>
 
-        {/* Buttons */}
         <div className="actions">
           <button type="submit" className="btn-primary">Submit</button>
           <button type="button" onClick={() => setForm(initialForm)} className="btn-secondary">Cancel</button>
         </div>
       </form>
 
-      {/* Snackbar Alert */}
-      <Snackbar
-        open={alert.open}
-        autoHideDuration={3000}
-        onClose={handleCloseAlert}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert onClose={handleCloseAlert} severity={alert.type} sx={{ width: "100%" }}>
+      <Snackbar open={alert.open} autoHideDuration={3000} onClose={() => setAlert({ ...alert, open: false })} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+        <Alert onClose={() => setAlert({ ...alert, open: false })} severity={alert.type} sx={{ width: "100%" }}>
           {alert.message}
         </Alert>
       </Snackbar>

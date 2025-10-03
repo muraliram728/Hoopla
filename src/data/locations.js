@@ -22,7 +22,7 @@ const locations = [
     id: 4,
     title: "Chiang Mai",
     description: "Explore temples, mountains, and rich culture.",
-    image: "https://www.greenmindtravel.com/cdn/shop/files/51a94c1c-9869-11ee-814a-96168fcea5a0.1000x1350_1.jpg?v=1755688981&width=258"
+    image: "https://thailandtravel.nl/uploads/cache/chiang-mai-thailand-5.jpg"
   }
 ];
 
