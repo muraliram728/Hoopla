@@ -1,120 +1,33 @@
-// import React, { useState, useEffect } from 'react';
-// import { AppBar, Toolbar, Box, Button, Menu, MenuItem, Typography, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, useTheme, useMediaQuery } from '@mui/material';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import { styled } from '@mui/material/styles';
-
-// const StyledAppBar = styled(AppBar, { shouldForwardProp: (prop) => prop !== 'scrolled' })(
-//   ({ theme, ownerState }) => ({
-//     backgroundColor: ownerState.scrolled ? 'rgba(255,255,255,0.95)' : 'transparent',
-//     boxShadow: ownerState.scrolled ? theme.shadows[4] : 'none',
-//     transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
-//     position: 'fixed',
-//     top: 0,
-//     left: 0,
-//     right: 0,
-//     zIndex: 1200,
-//   })
-// );
-
-// export default function Header() {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-//   const [scrolled, setScrolled] = useState(false);
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [drawerOpen, setDrawerOpen] = useState(false);
-//   const openMenu = Boolean(anchorEl);
-
-//   useEffect(() => {
-//     const handleScroll = () => setScrolled(window.scrollY > 50);
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-
-//   return (
-//     <>
-//       <StyledAppBar ownerState={{ scrolled }}>
-//         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-//           <Typography variant="h6" sx={{ color: scrolled ? 'black' : '#fff', fontWeight: 'bold' }}>
-//             Hoopla
-//           </Typography>
-
-//           {isMobile ? (
-//             <IconButton onClick={() => setDrawerOpen(true)} sx={{ color: scrolled ? 'black' : '#fff' }}>
-//               <MenuIcon />
-//             </IconButton>
-//           ) : (
-//             <Box sx={{ display: 'flex', gap: 2 }}>
-//               <Button sx={{ color: scrolled ? 'black' : '#fff', textTransform: 'none' }} onClick={(e) => setAnchorEl(e.currentTarget)}>Destination</Button>
-//               <Menu anchorEl={anchorEl} open={openMenu} onClose={() => setAnchorEl(null)}>
-//                 <MenuItem onClick={() => setAnchorEl(null)}>Bangkok</MenuItem>
-//                 <MenuItem onClick={() => setAnchorEl(null)}>Krabi</MenuItem>
-//                 <MenuItem onClick={() => setAnchorEl(null)}>Pattaya</MenuItem>
-//               </Menu>
-//               <Button sx={{ color: scrolled ? 'black' : '#fff', textTransform: 'none' }}>About Us</Button>
-//               <Button sx={{ color: scrolled ? 'black' : '#fff', textTransform: 'none' }}>Contact Us</Button>
-//             </Box>
-//           )}
-//         </Toolbar>
-//       </StyledAppBar>
-
-//       {/* Mobile Drawer */}
-//       <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-//         <Box sx={{ width: 250 }} role="presentation" onClick={() => setDrawerOpen(false)}>
-//           <List>
-//             <ListItem disablePadding>
-//               <ListItemButton>
-//                 <ListItemText primary="Destinations" />
-//               </ListItemButton>
-//             </ListItem>
-//             <ListItem disablePadding>
-//               <ListItemButton>
-//                 <ListItemText primary="About Us" />
-//               </ListItemButton>
-//             </ListItem>
-//             <ListItem disablePadding>
-//               <ListItemButton>
-//                 <ListItemText primary="Contact Us" />
-//               </ListItemButton>
-//             </ListItem>
-//           </List>
-//         </Box>
-//       </Drawer>
-//     </>
-//   );
-// }
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
     Toolbar,
     Box,
     Button,
-    Menu,
-    MenuItem,
-    Typography,
     IconButton,
     Drawer,
     List,
     ListItem,
     ListItemButton,
     ListItemText,
+    Collapse,
+    Menu,
+    MenuItem,
     useTheme,
     useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../assets/Logo.jpg"
+import Logo from "../../assets/Logo.jpg";
+import itineraries from "../../data/itineraries";
 
 const StyledAppBar = styled(AppBar, { shouldForwardProp: (prop) => prop !== "scrolled" })(
     ({ theme, ownerState }) => ({
-        backgroundColor: ownerState.scrolled ? "rgba(255,255,255,0.95)" : "transparent",
+        backgroundColor: ownerState.scrolled ? "#183932" : "transparent",
+        color: "white",
         boxShadow: ownerState.scrolled ? theme.shadows[4] : "none",
         transition: "background-color 0.3s ease, box-shadow 0.3s ease",
         position: "fixed",
@@ -131,9 +44,23 @@ export default function Header() {
     const navigate = useNavigate();
 
     const [scrolled, setScrolled] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const openMenu = Boolean(anchorEl);
+
+    // Mobile Drawer collapse states
+    const [destOpen, setDestOpen] = useState(false);
+    const [servicesOpen, setServicesOpen] = useState(false);
+
+    // Desktop dropdown anchors
+    const [anchorDestination, setAnchorDestination] = useState(null);
+    const [anchorServices, setAnchorServices] = useState(null);
+
+    const services = [
+        { name: "Flight Ticket", path: "/flight" },
+        { name: "Train/Bus Booking", path: "/trainandbus" },
+        { name: "Hotel Booking", path: "/hotel" },
+        { name: "Money Exchange", path: "/moneyexchange" },
+        { name: "Visa Services", path: "/visaservice" },
+    ];
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -145,123 +72,177 @@ export default function Header() {
         <>
             <StyledAppBar ownerState={{ scrolled }}>
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-
+                    {/* Logo */}
                     <Link to="/">
                         <img
                             src={Logo}
                             alt="Logo"
-                            style={{ height: "60px", marginRight: "8px", borderRadius: "5px", marginTop:"10px" }}
+                            style={{ height: 60, marginRight: 8, borderRadius: 5, marginTop: 10, cursor: "pointer" }}
                         />
                     </Link>
 
-                    {isMobile ? (
-                        <IconButton
-                            onClick={() => setDrawerOpen(true)}
-                            sx={{ color: scrolled ? "black" : "#fff" }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    ) : (
+                    {/* Desktop Menu */}
+                    {!isMobile && (
                         <Box sx={{ display: "flex", gap: 2 }}>
-                            {/* Destinations Menu */}
+                            {/* Destinations Dropdown */}
                             <Button
-                                sx={{ color: scrolled ? "black" : "#fff", textTransform: "none" }}
-                                onClick={(e) => setAnchorEl(e.currentTarget)}
+                                sx={{ color: scrolled ? "white" : "black", textTransform: "none" }}
+                                onClick={(e) => setAnchorDestination(e.currentTarget)}
                             >
                                 Destination
                             </Button>
                             <Menu
-                                anchorEl={anchorEl}
-                                open={openMenu}
-                                onClose={() => setAnchorEl(null)}
+                                anchorEl={anchorDestination}
+                                open={Boolean(anchorDestination)}
+                                onClose={() => setAnchorDestination(null)}
+                                sx={{ mt: 1 }}
                             >
-                                <MenuItem onClick={() => setAnchorEl(null)}>Bangkok</MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Krabi</MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Pattaya</MenuItem>
+                                <Box sx={{ display: "flex", gap: 1, px: 1 }}>
+                                    {/* Domestic */}
+                                    <Box sx={{ display: "flex", flexDirection: "column", pr: 2 }}>
+                                        <h5>Domestic</h5>
+                                        {itineraries
+                                            .filter((d) => d.type === "domestic")
+                                            .map((dest) => (
+                                                <MenuItem
+                                                    key={dest.id}
+                                                    onClick={() => {
+                                                        setAnchorDestination(null);
+                                                        navigate(`/itinerary/${dest.id}`);
+                                                    }}
+                                                >
+                                                    {dest.title}
+                                                </MenuItem>
+                                            ))}
+                                    </Box>
+
+                                    {/* Vertical Line */}
+                                    <Box sx={{ width: "2px", backgroundColor: "#ecbf52" }} />
+
+                                    {/* International */}
+                                    <Box sx={{ display: "flex", flexDirection: "column", pl: 2 }}>
+                                        <h5>International</h5>
+                                        {itineraries
+                                            .filter((d) => d.type === "international")
+                                            .map((dest) => (
+                                                <MenuItem
+                                                    key={dest.id}
+                                                    onClick={() => {
+                                                        setAnchorDestination(null);
+                                                        navigate(`/itinerary/${dest.id}`);
+                                                    }}
+                                                >
+                                                    {dest.title}
+                                                </MenuItem>
+                                            ))}
+                                    </Box>
+                                </Box>
                             </Menu>
 
-                            {/* Services Menu */}
+
+                            {/* Services Dropdown */}
                             <Button
-                                sx={{ color: scrolled ? "black" : "#fff", textTransform: "none" }}
-                                onClick={(e) => setAnchorEl(e.currentTarget)}
+                                sx={{ color: scrolled ? "white" : "black", textTransform: "none" }}
+                                onClick={(e) => setAnchorServices(e.currentTarget)}
                             >
                                 Services
                             </Button>
                             <Menu
-                                anchorEl={anchorEl}
-                                open={openMenu}
-                                onClose={() => setAnchorEl(null)}
+                                anchorEl={anchorServices}
+                                open={Boolean(anchorServices)}
+                                onClose={() => setAnchorServices(null)}
                             >
-                                {/* ✅ Route to flight page */}
-                                <MenuItem
-                                    onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate("/flight"); // navigate to FlightTicketForm
-                                    }}>
-                                    Flight Ticket
-                                </MenuItem>
-                                <MenuItem onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate("/trainandbus"); // navigate to FlightTicketForm
-                                    }}>
-                                      Train/Bus Booking
+                                {services.map((s) => (
+                                    <MenuItem
+                                        key={s.name}
+                                        onClick={() => {
+                                            setAnchorServices(null);
+                                            navigate(s.path);
+                                        }}
+                                    >
+                                        {s.name}
                                     </MenuItem>
-                                 <MenuItem onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate("/hotel"); // navigate to FlightTicketForm
-                                    }}>
-                                      Hotel Booking
-                                      </MenuItem>
-                                 <MenuItem onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate("/moneyexchange"); // navigate to FlightTicketForm
-                                    }}>
-                                      Money Exchange</MenuItem>
-                                 <MenuItem onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate("/visaservice"); // navigate to FlightTicketForm
-                                    }}>
-                                      Visa Services</MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Tour Packages</MenuItem>
+                                ))}
                             </Menu>
 
-                            <Button sx={{ color: scrolled ? "black" : "#fff", textTransform: "none" }}>
+                            <Button sx={{ color: scrolled ? "white" : "black", textTransform: "none" }} onClick={() => navigate("/about")}>
                                 About Us
                             </Button>
-                            <Button sx={{ color: scrolled ? "black" : "#fff", textTransform: "none" }}>
+                            <Button sx={{ color: scrolled ? "white" : "black", textTransform: "none" }} onClick={() => navigate("/contact")}>
                                 Contact Us
                             </Button>
                         </Box>
+                    )}
+
+                    {/* Mobile Hamburger */}
+                    {isMobile && (
+                        <IconButton onClick={() => setDrawerOpen(true)} sx={{ color: scrolled ? "black" : "#fff" }}>
+                            <MenuIcon />
+                        </IconButton>
                     )}
                 </Toolbar>
             </StyledAppBar>
 
             {/* Mobile Drawer */}
             <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <Box
-                    sx={{ width: 250 }}
-                    role="presentation"
-                    onClick={() => setDrawerOpen(false)}
-                >
+                <Box sx={{ width: 250 }} role="presentation">
                     <List>
+                        {/* Destinations Collapse */}
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemText primary="Destinations" />
+                            <ListItemButton onClick={() => setDestOpen(!destOpen)}>
+                                <ListItemText primary="Destination" />
+                                {destOpen ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
                         </ListItem>
+                        <Collapse in={destOpen} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                {itineraries.map((dest) => (
+                                    <ListItemButton
+                                        key={dest.id}
+                                        sx={{ pl: 4 }}
+                                        onClick={() => {
+                                            navigate(`/itinerary/${dest.id}`);
+                                            setDrawerOpen(false);
+                                        }}
+                                    >
+                                        <ListItemText primary={dest.title} />
+                                    </ListItemButton>
+                                ))}
+                            </List>
+                        </Collapse>
+
+                        {/* Services Collapse */}
                         <ListItem disablePadding>
-                            {/* ✅ Mobile drawer link to Flight page */}
-                            <ListItemButton component={Link} to="/flight">
-                                <ListItemText primary="Flight Ticket" />
+                            <ListItemButton onClick={() => setServicesOpen(!servicesOpen)}>
+                                <ListItemText primary="Services" />
+                                {servicesOpen ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
                         </ListItem>
+                        <Collapse in={servicesOpen} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                {services.map((s) => (
+                                    <ListItemButton
+                                        key={s.name}
+                                        sx={{ pl: 4 }}
+                                        onClick={() => {
+                                            navigate(s.path);
+                                            setDrawerOpen(false);
+                                        }}
+                                    >
+                                        <ListItemText primary={s.name} />
+                                    </ListItemButton>
+                                ))}
+                            </List>
+                        </Collapse>
+
+                        {/* About / Contact */}
                         <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton onClick={() => { navigate("/about"); setDrawerOpen(false); }}>
                                 <ListItemText primary="About Us" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton onClick={() => { navigate("/contact"); setDrawerOpen(false); }}>
                                 <ListItemText primary="Contact Us" />
                             </ListItemButton>
                         </ListItem>

@@ -12,7 +12,7 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url('https://www.greenmindtravel.com/cdn/shop/files/banner.png?v=1744171486&width=1920');
+  background-image: url('./assets/itinerariesImages/hero.jpg');
   background-size: cover;
   background-position: center;
   display: flex;

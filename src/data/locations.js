@@ -1,28 +1,47 @@
-// src/data/locations.js
+import dubai from "../assets/itinerariesImages/dubai.jpg"
+import Bali from "../assets/itinerariesImages/Bali.jpg"
+import thailand from "../assets/itinerariesImages/thailand.jpg"
+import malaysia from "../assets/itinerariesImages/malaysia.jpg"
+import Manali from "../assets/itinerariesImages/Manali.jpg"
+import Goa from "../assets/itinerariesImages/Goa.jpg"
+
+
 const locations = [
   {
     id: 1,
-    title: "Bangkok",
+    title: "dubai",
     description: "Experience vibrant city life and local culture.",
-    image: "https://www.greenmindtravel.com/cdn/shop/files/bd65d844cf3cd49d2613330810a05f84_1.jpg?v=1755689247&width=258"
+    image: dubai
   },
   {
     id: 2,
-    title: "Krabi",
+    title: "Bali",
     description: "Relax on stunning beaches and turquoise waters.",
-    image: "https://www.greenmindtravel.com/cdn/shop/files/Front-picturez-z839287939361_1.jpg?v=1755689279&width=258"
+    image: Bali
   },
   {
     id: 3,
-    title: "Pattaya",
+    title: "Thailand",
     description: "Enjoy nightlife, water sports, and beautiful coastlines.",
-    image: "https://www.greenmindtravel.com/cdn/shop/files/vertical_520_780_1_1.jpg?v=1755689320&width=258"
+    image: thailand
   },
   {
     id: 4,
-    title: "Chiang Mai",
+    title: "Malaysia",
     description: "Explore temples, mountains, and rich culture.",
-    image: "https://thailandtravel.nl/uploads/cache/chiang-mai-thailand-5.jpg"
+    image: malaysia
+  },
+  {
+    id: 5,
+    title: "Manali",
+    description: "Explore temples, mountains, and rich culture.",
+    image: Manali
+  },
+  {
+    id: 6,
+    title: "Goa",
+    description: "Explore temples, mountains, and rich culture.",
+    image: Goa
   }
 ];
 

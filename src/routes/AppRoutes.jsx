@@ -4,9 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../components/pages/Home";
 import Flight from "../components/forms/FlightForm";
 import TrainAndBusForm from "../components/forms/TrainAndBusForm";
+import ItineraryPage from "../components/pages/ItineraryPage";
 import HotelBookingForm from "../components/forms/HotelBookingForm";
 import MoneyExchangeForm from "../components/forms/MoneyExchangeForm";
 import VisaServiceForm from "../components/forms/VisaServiceForm";
+import AboutUs from "../components/pages/About";
 
 export default function AppRoutes() {
   return (
@@ -17,7 +19,8 @@ export default function AppRoutes() {
       <Route path="/hotel" element={<HotelBookingForm />} />
       <Route path="/moneyexchange" element={<MoneyExchangeForm />} />
       <Route path="/visaservice" element={<VisaServiceForm />} />
+      <Route path="/itinerary/:id" element={<ItineraryPage />} />
+      <Route path="/about" element={<AboutUs />} />
     </Routes>
   );
 }
-

@@ -8,8 +8,8 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="hero-inner">
-          <h1>Explore Thailand with Greenmind</h1>
-          <p>Handcrafted tours, local guides, unforgettable experiences.</p>
+          <h1>Welcome To Hooplaa Holidays</h1>
+          <p>Value Journeys.</p>
         </div>
       </section>
 
