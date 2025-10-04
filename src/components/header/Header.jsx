@@ -217,7 +217,11 @@ export default function Header() {
                                         navigate("/moneyexchange"); // navigate to FlightTicketForm
                                     }}>
                                       Money Exchange</MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Visa Services</MenuItem>
+                                 <MenuItem onClick={() => {
+                                        setAnchorEl(null);
+                                        navigate("/visaservice"); // navigate to FlightTicketForm
+                                    }}>
+                                      Visa Services</MenuItem>
                                 <MenuItem onClick={() => setAnchorEl(null)}>Tour Packages</MenuItem>
                             </Menu>
 
