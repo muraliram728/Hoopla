@@ -126,3 +126,17 @@ textarea {
     text-align: center;
   }
 }
+
+.converted-box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  width:49%;
+  border: 1px solid #ccc;
+}
+@media (max-width: 768px) {
+  .converted-box {
+  width:100%;}
+}

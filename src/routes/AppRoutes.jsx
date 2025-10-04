@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../components/pages/Home";
 import Flight from "../components/forms/FlightForm";
 import TrainAndBusForm from "../components/forms/TrainAndBusForm";
+import HotelBookingForm from "../components/forms/HotelBookingForm";
+import MoneyExchangeForm from "../components/forms/MoneyExchangeForm";
 
 export default function AppRoutes() {
   return (
@@ -11,6 +13,8 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/flight" element={<Flight />} />
       <Route path="/trainandbus" element={<TrainAndBusForm />} />
+      <Route path="/hotel" element={<HotelBookingForm />} />
+      <Route path="/moneyexchange" element={<MoneyExchangeForm />} />
     </Routes>
   );
 }
