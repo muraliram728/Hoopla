@@ -197,18 +197,26 @@ export default function Header() {
                                     onClick={() => {
                                         setAnchorEl(null);
                                         navigate("/flight"); // navigate to FlightTicketForm
-                                    }}
-                                >
+                                    }}>
                                     Flight Ticket
                                 </MenuItem>
                                 <MenuItem onClick={() => {
                                         setAnchorEl(null);
                                         navigate("/trainandbus"); // navigate to FlightTicketForm
-                                    }}
-                                    >Train/Bus Booking
+                                    }}>
+                                      Train/Bus Booking
                                     </MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Hotel Booking</MenuItem>
-                                <MenuItem onClick={() => setAnchorEl(null)}>Money Exchange</MenuItem>
+                                 <MenuItem onClick={() => {
+                                        setAnchorEl(null);
+                                        navigate("/hotel"); // navigate to FlightTicketForm
+                                    }}>
+                                      Hotel Booking
+                                      </MenuItem>
+                                 <MenuItem onClick={() => {
+                                        setAnchorEl(null);
+                                        navigate("/moneyexchange"); // navigate to FlightTicketForm
+                                    }}>
+                                      Money Exchange</MenuItem>
                                 <MenuItem onClick={() => setAnchorEl(null)}>Visa Services</MenuItem>
                                 <MenuItem onClick={() => setAnchorEl(null)}>Tour Packages</MenuItem>
                             </Menu>
