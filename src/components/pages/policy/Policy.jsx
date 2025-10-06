@@ -1,6 +1,6 @@
 import React from "react";
 import "./Policy.css";
-import Button from "../button/button";
+import Button from "../button/Button";
 
 export default function PrivacyPolicy() {
     return (
