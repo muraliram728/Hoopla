@@ -79,7 +79,7 @@ export default function Footer() {
               <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
                 <LocationOn sx={{ fontSize: 16, color: "#ecbf52", mt: 0.2 }} />
                 <Typography variant="body2" sx={{ color: "#d0d0d0", fontSize: "0.875rem" }}>
-                  Tamil Nadu, India
+                  Namakkal, Tamil Nadu, India
                 </Typography>
               </Box>
             </Box>
