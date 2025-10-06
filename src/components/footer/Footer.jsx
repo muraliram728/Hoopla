@@ -2,7 +2,8 @@
 import React from "react";
 import { Box, Container, Typography, Grid, IconButton, Link } from "@mui/material";
 import Logo from "../../assets/Logo.jpg";
-import { Facebook, Instagram, Twitter, LinkedIn, Email, Phone, LocationOn } from "@mui/icons-material";
+import { Link as RouterLink } from "react-router-dom";
+import { Facebook, Instagram, LinkedIn, Email, Phone, LocationOn, WhatsApp } from "@mui/icons-material";
 
 export default function Footer() {
   return (
@@ -38,10 +39,17 @@ export default function Footer() {
               Quick Links
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8 }}>
-              {["Home", "Flights", "Hotels", "Visa Services"].map((item) => (
+              {[
+                { label: "Home", path: "/" },
+                { label: "Flights", path: "/flight" },
+                { label: "Visa Services", path: "/visaservice" },
+                { label: "About Us", path: "/about" },
+                { label: "Contact", path: "/contact" }
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href="#"
+                  key={item.label}
+                  component={RouterLink}   // ✅ use RouterLink
+                  to={item.path}           // ✅ route path
                   sx={{
                     color: "#d0d0d0",
                     textDecoration: "none",
@@ -52,7 +60,7 @@ export default function Footer() {
                     }
                   }}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               ))}
             </Box>
@@ -94,8 +102,8 @@ export default function Footer() {
               {[
                 { icon: <Facebook />, link: "https://www.facebook.com/share/17Ek4qnrYg/" },
                 { icon: <Instagram />, link: "https://www.instagram.com/hooplaa_holidays?igsh=MWZzZ2R0dHU5YXlmdA==" },
-                { icon: <Twitter />, link: "#" },
-                { icon: <LinkedIn />, link: "#" }
+                { icon: <WhatsApp />, link: "https://wa.me/message/PDHYKYSEK5MKH1" },
+                { icon: <LinkedIn />, link: "https://www.linkedin.com/in/sujithkumar-sadhasivam-51055a239/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" }
               ].map((social, index) => (
                 <IconButton
                   key={index}
@@ -138,7 +146,7 @@ export default function Footer() {
           </Typography>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Link
-              href="#"
+              to="/policy"
               sx={{
                 color: "#d0d0d0",
                 textDecoration: "none",
@@ -150,7 +158,7 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              to="/policy"
               sx={{
                 color: "#d0d0d0",
                 textDecoration: "none",
