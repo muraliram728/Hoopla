@@ -13,22 +13,22 @@ import {
 export default function AboutUs() {
   const features = [
     {
-      icon: <LocalOffer sx={{ fontSize: 40 }} />,
+      icon: <LocalOffer sx={{ fontSize: 48 }} />,
       title: "Affordable Travel Solutions",
       description: "Budget-friendly packages designed for everyone"
     },
     {
-      icon: <TravelExplore sx={{ fontSize: 40 }} />,
+      icon: <TravelExplore sx={{ fontSize: 48 }} />,
       title: "Personalized Packages",
       description: "Customized itineraries tailored to your needs"
     },
     {
-      icon: <SupportAgent sx={{ fontSize: 40 }} />,
+      icon: <SupportAgent sx={{ fontSize: 48 }} />,
       title: "24/7 Support",
       description: "Round-the-clock guidance and assistance"
     },
     {
-      icon: <VerifiedUser sx={{ fontSize: 40 }} />,
+      icon: <VerifiedUser sx={{ fontSize: 48 }} />,
       title: "Trusted Services",
       description: "Customer-first approach with reliability"
     }
@@ -63,132 +63,187 @@ export default function AboutUs() {
   ];
 
   return (
-    <Box sx={{ bgcolor: "#fafafa", minHeight: "100vh", pt: 12, pb: 6 }}>
-      <Container maxWidth="lg">
-        {/* Hero Section */}
-        <Box 
-          sx={{ 
-            textAlign: "center", 
-            mb: 6,
-            animation: "fadeIn 0.8s ease-out",
-            "@keyframes fadeIn": {
-              from: { opacity: 0, transform: "translateY(-20px)" },
-              to: { opacity: 1, transform: "translateY(0)" }
-            }
-          }}
-        >
-          <Typography 
-            variant="h2" 
-            sx={{ 
-              fontWeight: 800,
-              color: "#183932",
-              mb: 2,
-              fontSize: { xs: "2.5rem", md: "3.5rem" }
-            }}
-          >
-            About Us
-          </Typography>
-          <Box 
-            sx={{ 
-              width: 100, 
-              height: 4, 
-              bgcolor: "#ecbf52", 
-              mx: "auto",
-              borderRadius: 2,
-              mb: 3
-            }} 
-          />
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              color: "#183932",
-              fontWeight: 600,
-              mb: 2
-            }}
-          >
-            Welcome to Hooplaa Holidays!
-          </Typography>
-        </Box>
+    <Box sx={{ bgcolor: "#f8f9fa", minHeight: "100vh" }}>
+      {/* Hero Section */}
+      <Box 
+        sx={{ 
+          bgcolor: "#183932",
+          pt: { xs: 12, md: 16 },
+          pb: { xs: 8, md: 12 },
+          position: "relative",
+          overflow: "hidden",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "40%",
+            height: "100%",
+            bgcolor: "#ecbf52",
+            opacity: 0.05,
+            transform: "skewX(-15deg)",
+            transformOrigin: "top right"
+          }
+        }}
+      >
+        <Container maxWidth="lg">
+          <Box sx={{ position: "relative", zIndex: 1 }}>
+            <Typography 
+              variant="overline"
+              sx={{ 
+                color: "#ecbf52",
+                fontSize: { xs: "0.75rem", md: "0.875rem" },
+                fontWeight: 600,
+                letterSpacing: 2,
+                mb: 2,
+                display: "block"
+              }}
+            >
+              WHO WE ARE
+            </Typography>
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontWeight: 700,
+                color: "white",
+                mb: 3,
+                fontSize: { xs: "2rem", sm: "2.75rem", md: "3.5rem" },
+                lineHeight: 1.2,
+                maxWidth: "800px"
+              }}
+            >
+              Transforming Travel Dreams Into Reality
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: "rgba(255, 255, 255, 0.85)",
+                fontWeight: 400,
+                lineHeight: 1.6,
+                maxWidth: "700px",
+                fontSize: { xs: "1rem", md: "1.25rem" }
+              }}
+            >
+              A passionate startup dedicated to making travel affordable, accessible, and unforgettable for everyone.
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
 
-        {/* Main Content */}
+      <Container maxWidth="lg" sx={{ mt: { xs: -4, md: -6 }, position: "relative", zIndex: 2 }}>
+        {/* Main Content Card */}
         <Paper 
           elevation={0}
           sx={{ 
-            p: { xs: 3, md: 5 }, 
-            mb: 6,
+            p: { xs: 4, md: 6 }, 
+            mb: 8,
             bgcolor: "white",
-            borderRadius: 3,
-            boxShadow: "0 4px 20px rgba(24, 57, 50, 0.08)"
+            borderRadius: 2,
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)"
           }}
         >
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              color: "#555",
-              lineHeight: 1.8,
-              fontSize: { xs: "1rem", md: "1.1rem" },
-              mb: 3
-            }}
-          >
-            We are a passionate startup travel company, born with a simple dream – to make travel 
-            affordable, easy, and memorable for everyone. Our journey started with the belief that 
-            travel is not just about visiting places, but about creating stories and experiences 
-            that last forever.
-          </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              color: "#555",
-              lineHeight: 1.8,
-              fontSize: { xs: "1rem", md: "1.1rem" }
-            }}
-          >
-            At Hooplaa Holidays, we provide budget-friendly holiday packages, customized itineraries, 
-            flight & hotel bookings, visa support, and complete travel assistance. Whether it's a 
-            family trip, a friends' getaway, a honeymoon, or a spiritual journey, we are here to 
-            make your travel smooth and stress-free.
-          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Typography 
+                variant="h5" 
+                sx={{ 
+                  fontWeight: 600,
+                  color: "#183932",
+                  mb: 3,
+                  fontSize: { xs: "1.25rem", md: "1.5rem" }
+                }}
+              >
+                Our Story
+              </Typography>
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  color: "#555",
+                  lineHeight: 1.8,
+                  mb: 3,
+                  fontSize: { xs: "0.95rem", md: "1rem" }
+                }}
+              >
+                We are a passionate startup travel company, born with a simple dream – to make travel affordable, easy, and memorable for everyone. Our journey started with the belief that travel is not just about visiting places, but about creating stories and experiences that last forever.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography 
+                variant="h5" 
+                sx={{ 
+                  fontWeight: 600,
+                  color: "#183932",
+                  mb: 3,
+                  fontSize: { xs: "1.25rem", md: "1.5rem" }
+                }}
+              >
+                What We Offer
+              </Typography>
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  color: "#555",
+                  lineHeight: 1.8,
+                  fontSize: { xs: "0.95rem", md: "1rem" }
+                }}
+              >
+                At Hooplaa Holidays, we provide budget-friendly holiday packages, customized itineraries, flight & hotel bookings, visa support, and complete travel assistance. Whether it's a family trip, a friends' getaway, a honeymoon, or a spiritual journey, we are here to make your travel smooth and stress-free.
+              </Typography>
+            </Grid>
+          </Grid>
         </Paper>
 
         {/* Why Choose Us */}
-        <Box sx={{ mb: 6 }}>
-          <Typography 
-            variant="h4" 
-            sx={{ 
-              fontWeight: 700,
-              color: "#183932",
-              mb: 4,
-              textAlign: "center"
-            }}
-          >
-            🌍 Why Choose Us?
-          </Typography>
+        <Box sx={{ mb: 10 }}>
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography 
+              variant="overline"
+              sx={{ 
+                color: "#ecbf52",
+                fontSize: "0.875rem",
+                fontWeight: 600,
+                letterSpacing: 2,
+                mb: 1,
+                display: "block"
+              }}
+            >
+              OUR ADVANTAGES
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                fontWeight: 700,
+                color: "#183932",
+                fontSize: { xs: "1.75rem", md: "2.5rem" }
+              }}
+            >
+              Why Choose Hooplaa Holidays
+            </Typography>
+          </Box>
           <Grid container spacing={3}>
             {features.map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Paper
                   elevation={0}
                   sx={{
-                    p: 3,
+                    p: 4,
                     height: "100%",
-                    textAlign: "center",
                     bgcolor: "white",
-                    borderRadius: 3,
-                    border: "2px solid transparent",
-                    transition: "all 0.4s ease",
+                    borderRadius: 2,
+                    border: "1px solid #e0e0e0",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     "&:hover": {
-                      transform: "translateY(-10px)",
-                      borderColor: "#ecbf52",
-                      boxShadow: "0 8px 24px rgba(24, 57, 50, 0.12)"
+                      transform: "translateY(-8px)",
+                      boxShadow: "0 12px 40px rgba(24, 57, 50, 0.15)",
+                      borderColor: "#ecbf52"
                     }
                   }}
                 >
                   <Box 
                     sx={{ 
-                      color: "#ecbf52", 
-                      mb: 2,
-                      display: "flex",
-                      justifyContent: "center"
+                      color: "#183932",
+                      mb: 2.5,
+                      opacity: 0.9
                     }}
                   >
                     {feature.icon}
@@ -198,13 +253,13 @@ export default function AboutUs() {
                     sx={{ 
                       fontWeight: 600,
                       color: "#183932",
-                      mb: 1,
+                      mb: 1.5,
                       fontSize: "1.1rem"
                     }}
                   >
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "#666" }}>
+                  <Typography variant="body2" sx={{ color: "#666", lineHeight: 1.7, fontSize: "0.9rem" }}>
                     {feature.description}
                   </Typography>
                 </Paper>
@@ -214,45 +269,57 @@ export default function AboutUs() {
         </Box>
 
         {/* Mission & Vision */}
-        <Grid container spacing={4} sx={{ mb: 6 }}>
+        <Grid container spacing={4} sx={{ mb: 10 }}>
           <Grid item xs={12} md={6}>
             <Paper
               elevation={0}
               sx={{
-                p: 4,
+                p: { xs: 4, md: 5 },
                 height: "100%",
                 bgcolor: "#183932",
                 color: "white",
-                borderRadius: 3,
+                borderRadius: 2,
                 position: "relative",
-                overflow: "hidden",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: -50,
-                  right: -50,
-                  width: 150,
-                  height: 150,
-                  bgcolor: "#ecbf52",
-                  opacity: 0.1,
-                  borderRadius: "50%"
-                }
+                overflow: "hidden"
               }}
             >
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: -40,
+                  right: -40,
+                  width: 180,
+                  height: 180,
+                  bgcolor: "#ecbf52",
+                  opacity: 0.08,
+                  borderRadius: "50%"
+                }}
+              />
+              <Typography 
+                variant="overline"
+                sx={{ 
+                  color: "#ecbf52",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: 2,
+                  mb: 2,
+                  display: "block"
+                }}
+              >
+                OUR MISSION
+              </Typography>
               <Typography 
                 variant="h5" 
                 sx={{ 
-                  fontWeight: 700,
-                  mb: 2,
-                  color: "#ecbf52"
+                  fontWeight: 600,
+                  mb: 2.5,
+                  fontSize: { xs: "1.25rem", md: "1.5rem" }
                 }}
               >
-                Our Mission
+                Empowering Every Journey
               </Typography>
-              <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-                To provide affordable and reliable travel services that help people explore the 
-                world without limits. We aim to create memorable journeys filled with comfort, 
-                happiness, and value for money.
+              <Typography variant="body1" sx={{ lineHeight: 1.8, opacity: 0.95, fontSize: { xs: "0.95rem", md: "1rem" } }}>
+                To provide affordable and reliable travel services that help people explore the world without limits. We aim to create memorable journeys filled with comfort, happiness, and value for money.
               </Typography>
             </Paper>
           </Grid>
@@ -260,72 +327,113 @@ export default function AboutUs() {
             <Paper
               elevation={0}
               sx={{
-                p: 4,
+                p: { xs: 4, md: 5 },
                 height: "100%",
                 bgcolor: "white",
-                border: "2px solid #183932",
-                borderRadius: 3,
+                border: "1px solid #e0e0e0",
+                borderRadius: 2,
                 position: "relative",
-                overflow: "hidden",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: -50,
-                  right: -50,
-                  width: 150,
-                  height: 150,
-                  bgcolor: "#183932",
-                  opacity: 0.05,
-                  borderRadius: "50%"
-                }
+                overflow: "hidden"
               }}
             >
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: -40,
+                  right: -40,
+                  width: 180,
+                  height: 180,
+                  bgcolor: "#183932",
+                  opacity: 0.03,
+                  borderRadius: "50%"
+                }}
+              />
+              <Typography 
+                variant="overline"
+                sx={{ 
+                  color: "#ecbf52",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: 2,
+                  mb: 2,
+                  display: "block"
+                }}
+              >
+                OUR VISION
+              </Typography>
               <Typography 
                 variant="h5" 
                 sx={{ 
-                  fontWeight: 700,
-                  mb: 2,
-                  color: "#183932"
+                  fontWeight: 600,
+                  mb: 2.5,
+                  color: "#183932",
+                  fontSize: { xs: "1.25rem", md: "1.5rem" }
                 }}
               >
-                🌟 Our Vision
+                Building India's Most Trusted Travel Brand
               </Typography>
-              <Typography variant="body1" sx={{ color: "#555", lineHeight: 1.8 }}>
-                To become one of the most trusted travel brands in India, known for our customer 
-                care, innovative services, and commitment to making travel accessible for everyone.
+              <Typography variant="body1" sx={{ color: "#555", lineHeight: 1.8, fontSize: { xs: "0.95rem", md: "1rem" } }}>
+                To become one of the most trusted travel brands in India, known for our customer care, innovative services, and commitment to making travel accessible for everyone.
               </Typography>
             </Paper>
           </Grid>
         </Grid>
 
         {/* Core Values */}
-        <Box>
-          <Typography 
-            variant="h4" 
-            sx={{ 
-              fontWeight: 700,
-              color: "#183932",
-              mb: 4,
-              textAlign: "center"
-            }}
-          >
-            💎 Our Core Values
-          </Typography>
+        <Box sx={{ pb: 10 }}>
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography 
+              variant="overline"
+              sx={{ 
+                color: "#ecbf52",
+                fontSize: "0.875rem",
+                fontWeight: 600,
+                letterSpacing: 2,
+                mb: 1,
+                display: "block"
+              }}
+            >
+              WHAT DRIVES US
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                fontWeight: 700,
+                color: "#183932",
+                mb: 2,
+                fontSize: { xs: "1.75rem", md: "2.5rem" }
+              }}
+            >
+              Our Core Values
+            </Typography>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: "#666",
+                maxWidth: "600px",
+                mx: "auto",
+                fontSize: { xs: "0.95rem", md: "1rem" }
+              }}
+            >
+              The principles that guide every decision we make and every journey we create
+            </Typography>
+          </Box>
           <Grid container spacing={3}>
             {values.map((value, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Paper
                   elevation={0}
                   sx={{
-                    p: 3,
+                    p: 3.5,
                     height: "100%",
                     bgcolor: "white",
-                    borderRadius: 3,
+                    borderRadius: 2,
+                    border: "1px solid #e0e0e0",
                     borderLeft: "4px solid #ecbf52",
                     transition: "all 0.3s ease",
                     "&:hover": {
-                      transform: "translateX(10px)",
-                      boxShadow: "0 4px 20px rgba(24, 57, 50, 0.1)"
+                      boxShadow: "0 8px 24px rgba(24, 57, 50, 0.1)",
+                      transform: "translateY(-4px)"
                     }
                   }}
                 >
@@ -342,14 +450,15 @@ export default function AboutUs() {
                       variant="h6" 
                       sx={{ 
                         fontWeight: 600,
-                        ml: 1,
-                        color: "#183932"
+                        ml: 1.5,
+                        color: "#183932",
+                        fontSize: "1.1rem"
                       }}
                     >
                       {value.title}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" sx={{ color: "#666", lineHeight: 1.7 }}>
+                  <Typography variant="body2" sx={{ color: "#666", lineHeight: 1.7, fontSize: "0.9rem" }}>
                     {value.description}
                   </Typography>
                 </Paper>

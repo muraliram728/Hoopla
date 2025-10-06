@@ -8,15 +8,15 @@ import { CalendarMonth, CheckCircle } from "@mui/icons-material";
 export default function ItineraryPage() {
   const { id } = useParams();
   const itinerary = itineraries.find((item) => item.id === id);
-  
+
   if (!itinerary) return <Typography>Itinerary not found</Typography>;
-  
+
   return (
     <Box sx={{ bgcolor: "#f8f9fa", minHeight: "100vh", pt: 12, pb: 8 }}>
       <Container maxWidth="lg">
         {/* Hero Section with Main Image */}
-        <Box 
-          sx={{ 
+        <Box
+          sx={{
             mb: 8,
             animation: "fadeIn 0.6s ease-out",
             "@keyframes fadeIn": {
@@ -63,9 +63,9 @@ export default function ItineraryPage() {
                 p: { xs: 3, md: 5 }
               }}
             >
-              <Typography 
-                variant="h2" 
-                sx={{ 
+              <Typography
+                variant="h2"
+                sx={{
                   fontWeight: 700,
                   color: "white",
                   mb: 2,
@@ -77,10 +77,10 @@ export default function ItineraryPage() {
                 {itinerary.title}
               </Typography>
               <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-                <Chip 
+                <Chip
                   icon={<CalendarMonth sx={{ color: "#183932 !important" }} />}
                   label={`${itinerary.days.length} Days Journey`}
-                  sx={{ 
+                  sx={{
                     bgcolor: "#ecbf52",
                     color: "#183932",
                     fontWeight: 600,
@@ -89,9 +89,9 @@ export default function ItineraryPage() {
                     py: 2.5
                   }}
                 />
-                <Chip 
+                <Chip
                   label={itinerary.type === "international" ? "International" : "Domestic"}
-                  sx={{ 
+                  sx={{
                     bgcolor: "white",
                     color: "#183932",
                     fontWeight: 600,
@@ -165,21 +165,28 @@ export default function ItineraryPage() {
                 >
                   <Box
                     sx={{
-                      minWidth: { xs: 44, md: 52 },
-                      height: { xs: 44, md: 52 },
-                      borderRadius: "50%",
+                      px: { xs: 2, md: 3 }, // padding left-right
+                      py: { xs: 0.5, md: 1 }, // padding top-bottom
+                      minWidth: { xs: 60, md: 80 },
+                      borderRadius: "30px", // rounded pill shape
                       bgcolor: index % 2 === 0 ? "#ecbf52" : "#183932",
-                      display: "flex",
+                      display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontWeight: 800,
-                      fontSize: { xs: "1.25rem", md: "1.5rem" },
+                      fontWeight: 700,
+                      fontSize: { xs: "0.875rem", md: "1rem" },
                       color: index % 2 === 0 ? "#183932" : "#ecbf52",
-                      border: `3px solid ${index % 2 === 0 ? "rgba(236, 191, 82, 0.3)" : "rgba(24, 57, 50, 0.3)"}`
+                      border: `2px solid ${index % 2 === 0
+                          ? "rgba(236, 191, 82, 0.4)"
+                          : "rgba(24, 57, 50, 0.4)"
+                        }`,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.5px",
                     }}
                   >
-                    {index + 1}
+                    Day {index + 1}
                   </Box>
+
                   <Typography
                     variant="h5"
                     sx={{
@@ -227,11 +234,11 @@ export default function ItineraryPage() {
                             transition: "transform 0.2s ease"
                           }}
                         >
-                          <CheckCircle 
-                            sx={{ 
-                              color: "#ecbf52", 
+                          <CheckCircle
+                            sx={{
+                              color: "#ecbf52",
                               fontSize: 18
-                            }} 
+                            }}
                           />
                         </Box>
                         <Typography

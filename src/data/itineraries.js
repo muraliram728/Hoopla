@@ -1,7 +1,6 @@
 import Manali from "../assets/itinerariesImages/Manali.jpg"
 import Goa from "../assets/itinerariesImages/Goa.jpg"
 import Kerala from "../assets/itinerariesImages/Kerala.jpg"
-import Mysore from "../assets/itinerariesImages/Mysore.jpg"
 import Andaman from "../assets/itinerariesImages/Andaman.jpg"
 import thailand from "../assets/itinerariesImages/thailand.jpg"
 import malaysia from "../assets/itinerariesImages/malaysia.jpg"
@@ -314,26 +313,6 @@ const itineraries = [
       {
         day: "Day 4: Departure",
         description: ["Breakfast and transfer to airport."]
-      }
-    ]
-  },
-  {
-    id: "mysore-3d2n",
-    title: "Mysore ",
-    type: "domestic",
-    image: Mysore,
-    days: [
-      {
-        day: "Day 1: Arrive Bangalore – Mysore",
-        description: ["Drive to Mysore, evening visit Brindavan Gardens."]
-      },
-      {
-        day: "Day 2: Mysore City Tour",
-        description: ["Mysore Palace, Chamundi Hills & Zoo."]
-      },
-      {
-        day: "Day 3: Departure",
-        description: ["Breakfast and check-out."]
       }
     ]
   },
