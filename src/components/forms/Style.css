@@ -67,7 +67,7 @@ textarea {
 
 .btn-primary {
   padding: 0.6rem 1.2rem;
-  background: #2563eb;
+  background: #ecbf52;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -75,7 +75,7 @@ textarea {
 }
 
 .btn-primary:hover {
-  background: #1e40af;
+  background: #183932;
 }
 
 .btn-secondary {
