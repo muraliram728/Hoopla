@@ -1,0 +1,274 @@
+.EventsreadmoreHeader{
+  font-size: 18px;
+  color: var(--PrimaryThemeColor);
+  font-weight: 600;
+}
+.cardGrid {
+  display: flex !important;
+  gap: 20px !important;
+}
+
+.customCardContent {
+  padding: 0px !important;
+}
+
+ul {
+  margin-inline-end: -50px;
+}
+
+
+.ceoImg {
+  /* paddingTop: 20px; */
+  /* width: 300px; */
+  /* float: left; */
+  padding-right: 15px;
+  border-right: 1px solid #f1f1f1;
+}
+
+.ceoImage {
+  height: 300px;
+  border-radius: 8px;
+  object-fit: fill;
+}
+
+.ceoContent {
+  width: 100%;
+  display: block;
+  margin-top: 7px;
+  opacity: 0.6;
+  padding-right: 10px;
+  margin-bottom: 10px;
+  font-size: 13px !important;
+  color: #333333 !important;
+}
+
+.ceoContentHeader {
+  width: 100%;
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  font-size: 28px !important;
+  color: #333333;
+}
+
+.calendarContainer {
+  margin-top: 30px;
+  margin-bottom: 80px;
+  color: red;
+}
+
+.calendar {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.eventsContainer {
+  margin-top: 100px;
+}
+
+.fullCard {
+  padding: 20px;
+}
+
+.typographyStyles {
+  color: #009bad !important;
+}
+
+.typographyStyles1 {
+  color: #009bad !important;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.cardHeight {
+  padding-top: 20px;
+  background: transparent !important;
+  box-shadow: none;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.boxBackgroundContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxBackgroundimgpaper {
+  background: #183932 !important;
+  border-radius: 12px !important;
+  padding: 25px;
+  width: 60%;
+}
+
+@media (max-width: 1024px) {
+  .boxBackgroundimgpaper {
+    width: 75%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .boxBackgroundimgpaper {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+
+.contentArea {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.boxBackgroundimg {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  background-color: #F9D61673;
+}
+
+.boxBackgroundimgOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  color: black;
+  bottom: 0;
+  border-radius: 8px;
+}
+.breadcrumbsNew {
+  display: flex;
+  justify-content: center;
+
+}
+.breadcrumbsHeader {
+  font-size: 20px;
+  line-height: 20px;
+  padding-top: 10px;
+}
+
+.breadcrumbsLinks {
+  background: #009bad !important;
+  height: 30px;
+  text-transform: capitalize;
+}
+
+.breadcrumbs {
+  color: #78797c !important;
+  display: inline-flex;
+}
+
+.breadHeader {
+  color: #ecbf52  !important;
+  text-decoration: none !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  display: flex;
+  justify-content: center;
+}
+
+.breadHeader1 {
+  color: #f1f1f1  !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 600;
+}
+.breadHeaderActive {
+  color: #ecbf52 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.breadHeader2 {
+  color: #78797c !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  opacity: 0.5;
+}
+
+
+.breadHeader2 {
+    color: grey !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    opacity: 0.5;
+
+}
+
+
+.contentRoot {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.paperStyles1 {
+  position: absolute;
+}
+
+.paperStyles2 {
+  position: relative;
+  margin-bottom: 340px;
+  padding-bottom: 200px;
+  margin-left: 800px;
+  margin-right: 80px;
+  margin-top: 50px;
+}
+
+.paperStyles {
+  height: 375px;
+}
+
+.hoverDot {
+  color: red;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.hoverDot:hover {
+  transform: scale(1.5);
+}
+
+.readMore {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.nextIcon {
+  font-size: 16px;
+}
+
+.newsHeader2 {
+  color: #333333 !important;
+  opacity: 0.6;
+  font-size: 13px !important;
+  text-align: left;
+  padding: 12px 0px 12px 0px;
+  height: 30px;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+}
+
+.newsHeaderseparate {
+  color: #333333 !important;
+  opacity: 0.6;
+  font-size: 17px !important;
+  text-align: left;
+  padding: 12px 0px 12px 0px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+}
+.newsHeaderseparate:hover {
+  color: #000000 !important;
+  opacity: 1;
+}
