@@ -16,7 +16,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function EnquiryForm() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [alert, setAlert] = useState({ open: false, message: "", type: "success" });
 
     const [form, setForm] = useState({
@@ -31,7 +31,10 @@ export default function EnquiryForm() {
     });
 
     useEffect(() => {
-        console.log("✅ EnquiryForm mounted");
+        const timer = setTimeout(() => {
+            setOpen(true); // show modal after 5s
+        }, 5000);
+        return () => clearTimeout(timer);
     }, []);
 
     const handleClose = () => setOpen(false);
@@ -135,10 +138,10 @@ export default function EnquiryForm() {
 
     return (
         <>
-            <Dialog 
-                open={open} 
-                onClose={handleClose} 
-                fullWidth 
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                fullWidth
                 maxWidth="md"
                 PaperProps={{
                     sx: {
@@ -148,7 +151,7 @@ export default function EnquiryForm() {
                         m: { xs: 0, sm: 2 },
                     }
                 }}
-                sx={{ 
+                sx={{
                     zIndex: 9999,
                     '& .MuiBackdrop-root': {
                         backgroundColor: 'rgba(0, 0, 0, 0.6)',
@@ -156,8 +159,8 @@ export default function EnquiryForm() {
                 }}
             >
                 {/* Enhanced Dialog Title */}
-                <DialogTitle 
-                    sx={{ 
+                <DialogTitle
+                    sx={{
                         bgcolor: '#183932',
                         color: '#ffffff',
                         fontWeight: 600,
@@ -175,7 +178,7 @@ export default function EnquiryForm() {
                         <IconButton
                             onClick={handleClose}
                             size="small"
-                            sx={{ 
+                            sx={{
                                 color: '#ecbf52',
                                 '&:hover': {
                                     backgroundColor: 'rgba(236, 191, 82, 0.1)',
@@ -185,9 +188,9 @@ export default function EnquiryForm() {
                             <CloseIcon fontSize="small" />
                         </IconButton>
                     </Box>
-                    <Typography 
-                        variant="body2" 
-                        sx={{ 
+                    <Typography
+                        variant="body2"
+                        sx={{
                             color: '#ecbf52',
                             mt: 0.5,
                             fontSize: { xs: '0.8rem', sm: '0.875rem' },
@@ -199,16 +202,16 @@ export default function EnquiryForm() {
                 </DialogTitle>
 
                 {/* Enhanced Dialog Content */}
-                <DialogContent 
-                    sx={{ 
+                <DialogContent
+                    sx={{
                         p: { xs: 2, sm: 3, md: 4 },
                         bgcolor: '#f8f9fa',
                     }}
                 >
-                    <Box 
-                        component="form" 
+                    <Box
+                        component="form"
                         onSubmit={handleSubmit}
-                        sx={{ 
+                        sx={{
                             bgcolor: '#ffffff',
                             borderRadius: '12px',
                             p: { xs: 2, sm: 3 },
@@ -218,12 +221,12 @@ export default function EnquiryForm() {
                         <Grid container spacing={{ xs: 2, sm: 2.5 }}>
                             {/* Name */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="Full Name" 
-                                    name="name" 
-                                    value={form.name} 
-                                    onChange={handleChange} 
-                                    fullWidth 
+                                <TextField
+                                    label="Full Name"
+                                    name="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    fullWidth
                                     required
                                     placeholder="Enter your full name"
                                     sx={inputStyles}
@@ -232,12 +235,12 @@ export default function EnquiryForm() {
 
                             {/* City */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="City" 
-                                    name="city" 
-                                    value={form.city} 
-                                    onChange={handleChange} 
-                                    fullWidth 
+                                <TextField
+                                    label="City"
+                                    name="city"
+                                    value={form.city}
+                                    onChange={handleChange}
+                                    fullWidth
                                     required
                                     placeholder="Your city"
                                     sx={inputStyles}
@@ -246,13 +249,13 @@ export default function EnquiryForm() {
 
                             {/* Email */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="Email Address" 
-                                    type="email" 
-                                    name="email" 
-                                    value={form.email} 
-                                    onChange={handleChange} 
-                                    fullWidth 
+                                <TextField
+                                    label="Email Address"
+                                    type="email"
+                                    name="email"
+                                    value={form.email}
+                                    onChange={handleChange}
+                                    fullWidth
                                     required
                                     placeholder="example@email.com"
                                     sx={inputStyles}
@@ -261,12 +264,12 @@ export default function EnquiryForm() {
 
                             {/* Phone */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="Phone Number" 
-                                    name="phone" 
-                                    value={form.phone} 
-                                    onChange={handleChange} 
-                                    fullWidth 
+                                <TextField
+                                    label="Phone Number"
+                                    name="phone"
+                                    value={form.phone}
+                                    onChange={handleChange}
+                                    fullWidth
                                     required
                                     placeholder="+91 XXXXX XXXXX"
                                     sx={inputStyles}
@@ -275,11 +278,11 @@ export default function EnquiryForm() {
 
                             {/* WhatsApp */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="WhatsApp Number" 
-                                    name="whatsapp" 
-                                    value={form.whatsapp} 
-                                    onChange={handleChange} 
+                                <TextField
+                                    label="WhatsApp Number"
+                                    name="whatsapp"
+                                    value={form.whatsapp}
+                                    onChange={handleChange}
                                     fullWidth
                                     placeholder="+91 XXXXX XXXXX (Optional)"
                                     sx={inputStyles}
@@ -288,12 +291,12 @@ export default function EnquiryForm() {
 
                             {/* Destination */}
                             <Grid item xs={12} sm={6}>
-                                <TextField 
-                                    label="Travel Destination" 
-                                    name="destination" 
-                                    value={form.destination} 
-                                    onChange={handleChange} 
-                                    fullWidth 
+                                <TextField
+                                    label="Travel Destination"
+                                    name="destination"
+                                    value={form.destination}
+                                    onChange={handleChange}
+                                    fullWidth
                                     required
                                     placeholder="Where do you want to go?"
                                     sx={inputStyles}
@@ -347,7 +350,7 @@ export default function EnquiryForm() {
                                 textTransform: 'none',
                                 boxShadow: 'none',
                                 transition: 'all 0.2s ease',
-                                '&:hover': { 
+                                '&:hover': {
                                     bgcolor: '#ecbf52',
                                     color: '#183932',
                                     boxShadow: 'none',
@@ -358,9 +361,9 @@ export default function EnquiryForm() {
                         </Button>
 
                         {/* Privacy Notice */}
-                        <Typography 
-                            variant="caption" 
-                            sx={{ 
+                        <Typography
+                            variant="caption"
+                            sx={{
                                 display: 'block',
                                 textAlign: 'center',
                                 mt: 2,
@@ -384,11 +387,11 @@ export default function EnquiryForm() {
                     bottom: { xs: 24, sm: 24 },
                 }}
             >
-                <Alert 
-                    onClose={handleCloseAlert} 
+                <Alert
+                    onClose={handleCloseAlert}
                     severity={alert.type}
                     variant="filled"
-                    sx={{ 
+                    sx={{
                         width: '100%',
                         borderRadius: '8px',
                         fontWeight: 500,

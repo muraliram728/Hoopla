@@ -5,7 +5,7 @@ import "./WhatsApp.css";
 export default function WhatsAppButton() {
   const handleWhatsAppClick = () => {
     const phoneNumber = "9385353350";
-    const message = "Hello! I’m interested in learning more about Hooplaa Holidays.";
+    const message = "Hi Hooplaa Holidays,I'm interested in your travel packages. Can you share some details?";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
