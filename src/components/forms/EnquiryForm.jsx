@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import {
     Dialog,
+    DialogTitle,
     DialogContent,
     IconButton,
     TextField,
@@ -10,20 +11,9 @@ import {
     Alert,
     Grid,
     Typography,
-    Box,
-    InputAdornment
+    Box
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-    Person,
-    LocationCity,
-    Email,
-    Phone,
-    WhatsApp,
-    Flight,
-    CalendarMonth,
-    Groups
-} from "@mui/icons-material";
 
 export default function EnquiryForm() {
     const [open, setOpen] = useState(true);
@@ -98,7 +88,7 @@ export default function EnquiryForm() {
             if (data.success) {
                 setAlert({ open: true, message: "Enquiry submitted successfully!", type: "success" });
                 setForm({ name: "", city: "", email: "", phone: "", whatsapp: "", destination: "", travelDate: "", people: 1 });
-                setOpen(false);
+                setTimeout(() => setOpen(false), 1500);
             } else {
                 setAlert({ open: true, message: "Error: " + (data.message || "Something went wrong."), type: "error" });
             }
@@ -109,40 +99,38 @@ export default function EnquiryForm() {
 
     const handleCloseAlert = () => setAlert((prev) => ({ ...prev, open: false }));
 
-    // Custom TextField styling
-    const textFieldStyles = {
-        "& .MuiOutlinedInput-root": {
-            borderRadius: 2,
-            bgcolor: "#fafafa",
-            transition: "all 0.3s ease",
-            "& fieldset": {
-                borderColor: "#e0e0e0",
-                borderWidth: "1px"
+    // Professional input styling
+    const inputStyles = {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#ffffff',
+            borderRadius: '8px',
+            transition: 'all 0.3s ease',
+            '& fieldset': {
+                borderColor: '#e0e0e0',
+                borderWidth: '1.5px',
             },
-            "&:hover fieldset": {
-                borderColor: "#ecbf52",
+            '&:hover fieldset': {
+                borderColor: '#183932',
             },
-            "&.Mui-focused fieldset": {
-                borderColor: "#183932",
-                borderWidth: "2px"
+            '&.Mui-focused fieldset': {
+                borderColor: '#183932',
+                borderWidth: '2px',
             },
-            "&.Mui-focused": {
-                bgcolor: "white"
-            }
         },
-        "& .MuiInputLabel-root": {
-            color: "#666",
+        '& .MuiInputLabel-root': {
+            color: '#666666',
+            fontSize: '0.95rem',
             fontWeight: 500,
-            fontSize: "0.95rem",
-            "&.Mui-focused": {
-                color: "#183932",
-                fontWeight: 600
-            }
+            '&.Mui-focused': {
+                color: '#183932',
+                fontWeight: 600,
+            },
         },
-        "& .MuiOutlinedInput-input": {
-            fontSize: "0.95rem",
-            color: "#333"
-        }
+        '& .MuiOutlinedInput-input': {
+            padding: '12px 14px',
+            fontSize: '0.95rem',
+            color: '#333333',
+        },
     };
 
     return (
@@ -151,263 +139,169 @@ export default function EnquiryForm() {
                 open={open} 
                 onClose={handleClose} 
                 fullWidth 
-                maxWidth="md" 
-                sx={{ 
-                    zIndex: 9999,
-                    "& .MuiDialog-paper": {
-                        borderRadius: 3,
-                        boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)"
-                    }
-                }}
+                maxWidth="md"
                 PaperProps={{
                     sx: {
-                        m: { xs: 2, sm: 3 },
-                        maxHeight: { xs: "90vh", sm: "85vh" }
+                        borderRadius: { xs: 0, sm: '16px' },
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+                        maxHeight: { xs: '100vh', sm: '90vh' },
+                        m: { xs: 0, sm: 2 },
+                    }
+                }}
+                sx={{ 
+                    zIndex: 9999,
+                    '& .MuiBackdrop-root': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
                     }
                 }}
             >
-                {/* Header with background pattern */}
-                <Box
-                    sx={{
-                        position: "relative",
-                        bgcolor: "#183932",
-                        pt: 4,
-                        pb: 3,
-                        px: { xs: 3, sm: 4 },
-                        overflow: "hidden",
-                        "&::before": {
-                            content: '""',
-                            position: "absolute",
-                            top: -50,
-                            right: -50,
-                            width: 200,
-                            height: 200,
-                            bgcolor: "#ecbf52",
-                            opacity: 0.1,
-                            borderRadius: "50%"
-                        },
-                        "&::after": {
-                            content: '""',
-                            position: "absolute",
-                            bottom: -30,
-                            left: -30,
-                            width: 150,
-                            height: 150,
-                            bgcolor: "#ecbf52",
-                            opacity: 0.08,
-                            borderRadius: "50%"
-                        }
+                {/* Enhanced Dialog Title */}
+                <DialogTitle 
+                    sx={{ 
+                        bgcolor: '#183932',
+                        color: '#ffffff',
+                        fontWeight: 600,
+                        fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                        py: { xs: 2, sm: 2.5 },
+                        px: { xs: 2, sm: 3 },
+                        position: 'relative',
+                        borderBottom: '3px solid #ecbf52',
                     }}
                 >
-                    <IconButton
-                        onClick={handleClose}
-                        sx={{
-                            position: "absolute",
-                            right: 12,
-                            top: 12,
-                            color: "white",
-                            bgcolor: "rgba(255, 255, 255, 0.1)",
-                            zIndex: 1,
-                            transition: "all 0.3s ease",
-                            "&:hover": {
-                                bgcolor: "#ecbf52",
-                                color: "#183932",
-                                transform: "rotate(90deg)"
-                            }
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600, fontSize: 'inherit' }}>
+                            Travel Enquiry Form
+                        </Typography>
+                        <IconButton
+                            onClick={handleClose}
+                            sx={{ 
+                                color: '#ecbf52',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(236, 191, 82, 0.1)',
+                                    transform: 'rotate(90deg)',
+                                    transition: 'all 0.3s ease',
+                                }
+                            }}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+                    <Typography 
+                        variant="body2" 
+                        sx={{ 
+                            color: '#ecbf52',
+                            mt: 0.5,
+                            fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                            fontWeight: 400,
                         }}
                     >
-                        <CloseIcon />
-                    </IconButton>
+                        Please fill in your details and we'll get back to you shortly
+                    </Typography>
+                </DialogTitle>
 
-                    <Box sx={{ position: "relative", zIndex: 1 }}>
-                        <Typography
-                            variant="overline"
-                            sx={{
-                                color: "#ecbf52",
-                                fontSize: "0.75rem",
-                                fontWeight: 600,
-                                letterSpacing: 2,
-                                display: "block",
-                                mb: 1
-                            }}
-                        >
-                            START YOUR JOURNEY
-                        </Typography>
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                color: "white",
-                                fontWeight: 700,
-                                mb: 1,
-                                fontSize: { xs: "1.5rem", sm: "2rem" }
-                            }}
-                        >
-                            Plan Your Perfect Trip
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                color: "rgba(255, 255, 255, 0.8)",
-                                maxWidth: "500px",
-                                lineHeight: 1.6
-                            }}
-                        >
-                            Share your travel details and we'll craft a personalized itinerary just for you
-                        </Typography>
-                    </Box>
-                </Box>
-
-                <DialogContent sx={{ p: { xs: 3, sm: 4, md: 5 }, bgcolor: "white" }}>
-                    <form onSubmit={handleSubmit}>
+                {/* Enhanced Dialog Content */}
+                <DialogContent 
+                    sx={{ 
+                        p: { xs: 2, sm: 3, md: 4 },
+                        bgcolor: '#f8f9fa',
+                    }}
+                >
+                    <Box 
+                        component="form" 
+                        onSubmit={handleSubmit}
+                        sx={{ 
+                            bgcolor: '#ffffff',
+                            borderRadius: '12px',
+                            p: { xs: 2, sm: 3 },
+                            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                        }}
+                    >
                         <Grid container spacing={{ xs: 2, sm: 2.5 }}>
-                            {/* Personal Information Section */}
-                            <Grid item xs={12}>
-                                <Typography
-                                    variant="subtitle2"
-                                    sx={{
-                                        color: "#183932",
-                                        fontWeight: 600,
-                                        fontSize: "0.875rem",
-                                        mb: 1.5,
-                                        textTransform: "uppercase",
-                                        letterSpacing: 1
-                                    }}
-                                >
-                                    Personal Information
-                                </Typography>
-                            </Grid>
-
+                            {/* Name */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Full Name"
-                                    name="name"
-                                    value={form.name}
-                                    onChange={handleChange}
-                                    fullWidth
+                                <TextField 
+                                    label="Full Name" 
+                                    name="name" 
+                                    value={form.name} 
+                                    onChange={handleChange} 
+                                    fullWidth 
                                     required
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Person sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="Enter your full name"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* City */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="City"
-                                    name="city"
-                                    value={form.city}
-                                    onChange={handleChange}
-                                    fullWidth
+                                <TextField 
+                                    label="City" 
+                                    name="city" 
+                                    value={form.city} 
+                                    onChange={handleChange} 
+                                    fullWidth 
                                     required
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <LocationCity sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="Your city"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* Email */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Email Address"
-                                    type="email"
-                                    name="email"
-                                    value={form.email}
-                                    onChange={handleChange}
-                                    fullWidth
+                                <TextField 
+                                    label="Email Address" 
+                                    type="email" 
+                                    name="email" 
+                                    value={form.email} 
+                                    onChange={handleChange} 
+                                    fullWidth 
                                     required
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Email sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="example@email.com"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* Phone */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Phone Number"
-                                    name="phone"
-                                    value={form.phone}
-                                    onChange={handleChange}
-                                    fullWidth
+                                <TextField 
+                                    label="Phone Number" 
+                                    name="phone" 
+                                    value={form.phone} 
+                                    onChange={handleChange} 
+                                    fullWidth 
                                     required
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Phone sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="+91 XXXXX XXXXX"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* WhatsApp */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="WhatsApp Number (Optional)"
-                                    name="whatsapp"
-                                    value={form.whatsapp}
-                                    onChange={handleChange}
+                                <TextField 
+                                    label="WhatsApp Number" 
+                                    name="whatsapp" 
+                                    value={form.whatsapp} 
+                                    onChange={handleChange} 
                                     fullWidth
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <WhatsApp sx={{ color: "#25D366", opacity: 0.8 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="+91 XXXXX XXXXX (Optional)"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
-                            {/* Travel Details Section */}
-                            <Grid item xs={12} sx={{ mt: 2 }}>
-                                <Typography
-                                    variant="subtitle2"
-                                    sx={{
-                                        color: "#183932",
-                                        fontWeight: 600,
-                                        fontSize: "0.875rem",
-                                        mb: 1.5,
-                                        textTransform: "uppercase",
-                                        letterSpacing: 1
-                                    }}
-                                >
-                                    Travel Details
-                                </Typography>
-                            </Grid>
-
+                            {/* Destination */}
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Destination"
-                                    name="destination"
-                                    value={form.destination}
-                                    onChange={handleChange}
-                                    fullWidth
+                                <TextField 
+                                    label="Travel Destination" 
+                                    name="destination" 
+                                    value={form.destination} 
+                                    onChange={handleChange} 
+                                    fullWidth 
                                     required
-                                    sx={textFieldStyles}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Flight sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    placeholder="Where do you want to go?"
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* Travel Date */}
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     label="Date of Travel"
@@ -417,18 +311,12 @@ export default function EnquiryForm() {
                                     onChange={handleChange}
                                     fullWidth
                                     required
-                                    sx={textFieldStyles}
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <CalendarMonth sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    sx={inputStyles}
                                 />
                             </Grid>
 
+                            {/* Number of People */}
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     label="Number of Travelers"
@@ -438,68 +326,80 @@ export default function EnquiryForm() {
                                     onChange={handleChange}
                                     fullWidth
                                     required
-                                    sx={textFieldStyles}
                                     inputProps={{ min: 1 }}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Groups sx={{ color: "#183932", opacity: 0.7 }} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    sx={inputStyles}
                                 />
                             </Grid>
                         </Grid>
 
-                        <Box sx={{ mt: 4, display: "flex", gap: 2, flexDirection: { xs: "column", sm: "row" } }}>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                sx={{
-                                    py: 1.5,
-                                    bgcolor: "#183932",
-                                    color: "white",
-                                    fontWeight: 600,
-                                    fontSize: "1rem",
-                                    borderRadius: 2,
-                                    textTransform: "none",
-                                    boxShadow: "0 4px 12px rgba(24, 57, 50, 0.3)",
-                                    transition: "all 0.3s ease",
-                                    "&:hover": {
-                                        bgcolor: "#0d221b",
-                                        transform: "translateY(-2px)",
-                                        boxShadow: "0 6px 20px rgba(24, 57, 50, 0.4)"
-                                    },
-                                }}
-                            >
-                                Submit Enquiry
-                            </Button>
-                            
-                        </Box>
-                    </form>
+                        {/* Submit Button */}
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                mt: { xs: 3, sm: 4 },
+                                py: { xs: 1.5, sm: 1.75 },
+                                bgcolor: '#183932',
+                                color: '#ecbf52',
+                                fontSize: { xs: '1rem', sm: '1.1rem' },
+                                fontWeight: 600,
+                                borderRadius: '8px',
+                                textTransform: 'none',
+                                boxShadow: '0 4px 12px rgba(24, 57, 50, 0.3)',
+                                transition: 'all 0.3s ease',
+                                '&:hover': { 
+                                    bgcolor: '#ecbf52',
+                                    color: '#183932',
+                                    boxShadow: '0 6px 16px rgba(236, 191, 82, 0.4)',
+                                    transform: 'translateY(-2px)',
+                                },
+                                '&:active': {
+                                    transform: 'translateY(0)',
+                                }
+                            }}
+                        >
+                            Submit Enquiry
+                        </Button>
+
+                        {/* Privacy Notice */}
+                        <Typography 
+                            variant="caption" 
+                            sx={{ 
+                                display: 'block',
+                                textAlign: 'center',
+                                mt: 2,
+                                color: '#666666',
+                                fontSize: { xs: '0.75rem', sm: '0.8rem' },
+                            }}
+                        >
+                            We respect your privacy and will never share your information
+                        </Typography>
+                    </Box>
                 </DialogContent>
             </Dialog>
 
-            {/* Snackbar Alert */}
+            {/* Enhanced Snackbar Alert */}
             <Snackbar
                 open={alert.open}
                 autoHideDuration={4000}
                 onClose={handleCloseAlert}
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                sx={{
+                    bottom: { xs: 24, sm: 24 },
+                }}
             >
-                <Alert
-                    onClose={handleCloseAlert}
+                <Alert 
+                    onClose={handleCloseAlert} 
                     severity={alert.type}
-                    sx={{
-                        width: "100%",
-                        borderRadius: 2,
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-                        "& .MuiAlert-icon": {
-                            fontSize: "24px"
-                        }
-                    }}
                     variant="filled"
+                    sx={{ 
+                        width: '100%',
+                        borderRadius: '8px',
+                        fontWeight: 500,
+                        fontSize: { xs: '0.875rem', sm: '0.95rem' },
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    }}
                 >
                     {alert.message}
                 </Alert>
