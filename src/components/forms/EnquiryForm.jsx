@@ -174,16 +174,15 @@ export default function EnquiryForm() {
                         </Typography>
                         <IconButton
                             onClick={handleClose}
+                            size="small"
                             sx={{ 
                                 color: '#ecbf52',
                                 '&:hover': {
                                     backgroundColor: 'rgba(236, 191, 82, 0.1)',
-                                    transform: 'rotate(90deg)',
-                                    transition: 'all 0.3s ease',
                                 }
                             }}
                         >
-                            <CloseIcon />
+                            <CloseIcon fontSize="small" />
                         </IconButton>
                     </Box>
                     <Typography 
@@ -338,25 +337,21 @@ export default function EnquiryForm() {
                             variant="contained"
                             fullWidth
                             sx={{
-                                mt: { xs: 3, sm: 4 },
-                                py: { xs: 1.5, sm: 1.75 },
+                                mt: 3,
+                                py: 1.2,
                                 bgcolor: '#183932',
                                 color: '#ecbf52',
-                                fontSize: { xs: '1rem', sm: '1.1rem' },
-                                fontWeight: 600,
-                                borderRadius: '8px',
+                                fontSize: '0.95rem',
+                                fontWeight: 500,
+                                borderRadius: '6px',
                                 textTransform: 'none',
-                                boxShadow: '0 4px 12px rgba(24, 57, 50, 0.3)',
-                                transition: 'all 0.3s ease',
+                                boxShadow: 'none',
+                                transition: 'all 0.2s ease',
                                 '&:hover': { 
                                     bgcolor: '#ecbf52',
                                     color: '#183932',
-                                    boxShadow: '0 6px 16px rgba(236, 191, 82, 0.4)',
-                                    transform: 'translateY(-2px)',
+                                    boxShadow: 'none',
                                 },
-                                '&:active': {
-                                    transform: 'translateY(0)',
-                                }
                             }}
                         >
                             Submit Enquiry
