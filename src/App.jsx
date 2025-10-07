@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import AppRoutes from "./routes/AppRoutes";
+import EnquiryForm from "./components/forms/EnquiryForm";
 import "./App.css";
 
 const theme = createTheme();
@@ -18,6 +19,7 @@ export default function App() {
           <AppRoutes />
         </main>
         <Footer />
+        <EnquiryForm />
       </Router>
     </ThemeProvider>
   );

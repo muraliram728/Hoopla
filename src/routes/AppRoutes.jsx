@@ -10,7 +10,6 @@ import MoneyExchangeForm from "../components/forms/MoneyExchangeForm";
 import VisaServiceForm from "../components/forms/VisaServiceForm";
 import AboutUs from "../components/pages/About";
 import Contact from "../components/pages/contact/Contact";
-import PrivacyPolicy from "../components/pages/policy/Policy";
 
 export default function AppRoutes() {
   return (
@@ -24,7 +23,6 @@ export default function AppRoutes() {
       <Route path="/itinerary/:id" element={<ItineraryPage />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/policy" element={<PrivacyPolicy />} />
     </Routes>
   );
 }

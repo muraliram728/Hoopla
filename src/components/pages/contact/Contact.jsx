@@ -305,19 +305,6 @@ const handleSubmit = async (e) => {
               required
             />
 
-            <div className="checkbox-group">
-              <input
-                type="checkbox"
-                name="agree"
-                checked={form.agree}
-                onChange={handleChange}
-                id="privacy"
-              />
-              <label htmlFor="privacy">
-                I agree to the <Link to="/policy">Privacy Policy</Link> of the website.
-              </label>
-            </div>
-
             <button type="submit" className="send-btn">
               Send
             </button>
