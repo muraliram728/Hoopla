@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Style.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import PageBack from "../PageBackBox/PageBack";
 
 export default function HotelBookingForm() {
   const today = new Date().toISOString().split("T")[0];
@@ -97,13 +98,21 @@ export default function HotelBookingForm() {
     }
   };
 
+    const navigationData = [
+    { label: "Hotel Booking", to: "/hotel" },
+    { label: "Home", to: "/" },
+    { label: "Hotel Booking", to: "/hotel" },
+  ];
+
   const handleCloseAlert = () => {
     setAlert((prev) => ({ ...prev, open: false }));
   };
 
   return (
+    <div style={{ marginTop: "75px" }}>
+          <PageBack navigationData={navigationData} />
     <div className="form-container">
-      <h2 className="form-title">Hotel Booking</h2>
+      {/* <h2 className="form-title">Hotel Booking</h2> */}
 
       <form onSubmit={handleSubmit} className="form">
         {/* Hotel Info */}
@@ -194,6 +203,7 @@ export default function HotelBookingForm() {
           {alert.message}
         </Alert>
       </Snackbar>
+    </div>
     </div>
   );
 }

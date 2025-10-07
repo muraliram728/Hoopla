@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Style.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import PageBack from "../PageBackBox/PageBack";
 
 export default function TicketForm() {
   const today = new Date().toISOString().split("T")[0];
@@ -111,7 +112,15 @@ export default function TicketForm() {
     }
   }
 
+    const navigationData = [
+      { label: "Train And Bus Ticket Booking", to: "/trainandbus" },
+      { label: "Home", to: "/" },
+      { label: "Train And Bus Ticket Booking", to: "/trainandbus" },
+    ];
+
   return (
+    <div style={{ marginTop: "75px" }}>
+          <PageBack navigationData={navigationData} />
     <div className="form-container">
       <h2 className="form-title">{form.transport} Booking</h2>
 
@@ -220,6 +229,7 @@ export default function TicketForm() {
           {alert.message}
         </Alert>
       </Snackbar>
+    </div>
     </div>
   );
 }

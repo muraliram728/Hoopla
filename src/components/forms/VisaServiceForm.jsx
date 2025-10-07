@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Style.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import PageBack from "../PageBackBox/PageBack";
 
 export default function VisaServiceForm() {
   const today = new Date().toISOString().split("T")[0];
@@ -87,9 +88,17 @@ export default function VisaServiceForm() {
 
   const handleCloseAlert = () => setAlert((a) => ({ ...a, open: false }));
 
+    const navigationData = [
+      { label: "Visa Services", to: "/visaservice" },
+      { label: "Home", to: "/" },
+      { label: "Visa Services", to: "/visaservice" },
+    ];
+
   return (
+    <div style={{ marginTop: "75px" }}>
+          <PageBack navigationData={navigationData} />
     <div className="form-container">
-      <h2 className="form-title">Visa Services</h2>
+      {/* <h2 className="form-title">Visa Services</h2> */}
 
       <form onSubmit={handleSubmit} className="form">
         <div className="grid">
@@ -204,6 +213,7 @@ export default function VisaServiceForm() {
           {alert.message}
         </Alert>
       </Snackbar>
+    </div>
     </div>
   );
 }
