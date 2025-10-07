@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import AppRoutes from "./routes/AppRoutes";
 import EnquiryForm from "./components/forms/EnquiryForm";
 import "./App.css";
+import WhatsAppButton from "./components/pages/contact/whatsapp/WhatsApp";
 
 const theme = createTheme();
 
@@ -20,6 +21,7 @@ export default function App() {
         </main>
         <Footer />
         <EnquiryForm />
+        <WhatsAppButton />
       </Router>
     </ThemeProvider>
   );

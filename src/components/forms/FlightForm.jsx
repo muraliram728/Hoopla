@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Style.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import PageBack from "../PageBackBox/PageBack";
 
 export default function FlightTicketForm() {
   const today = new Date().toISOString().split("T")[0];
@@ -106,9 +107,17 @@ export default function FlightTicketForm() {
     setAlert((prev) => ({ ...prev, open: false }));
   };
 
+    const navigationData = [
+    { label: "Flight Ticket Booking", to: "/flight" },
+    { label: "Home", to: "/" },
+    { label: "Flight Ticket Booking", to: "/flight" },
+  ];
+
   return (
+    <div style={{ marginTop: "75px" }}>
+      <PageBack navigationData={navigationData} />
     <div className="form-container">
-      <h2 className="form-title">Flight Ticket Booking</h2>
+      {/* <h2 className="form-title">Flight Ticket Booking</h2> */}
 
       <form onSubmit={handleSubmit} className="form">
         {/* Trip Type */}
@@ -239,6 +248,7 @@ export default function FlightTicketForm() {
           {alert.message}
         </Alert>
       </Snackbar>
+    </div>
     </div>
   );
 }

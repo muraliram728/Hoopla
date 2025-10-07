@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Style.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import PageBack from "../PageBackBox/PageBack";
 
 export default function MoneyExchangeForm() {
     const initialForm = {
@@ -108,9 +109,17 @@ export default function MoneyExchangeForm() {
         setAlert((prev) => ({ ...prev, open: false }));
     };
 
+      const navigationData = [
+        { label: "Money Exchange", to: "/moneyexchange" },
+        { label: "Home", to: "/" },
+        { label: "Money Exchange", to: "/moneyexchange" },
+      ];
+
     return (
+        <div style={{ marginTop: "75px" }}>
+              <PageBack navigationData={navigationData} />
         <div className="form-container">
-            <h2 className="form-title">Money Exchange</h2>
+            {/* <h2 className="form-title">Money Exchange</h2> */}
 
             <form onSubmit={handleSubmit} className="form">
                 {/* Currency Exchange Info */}
@@ -207,6 +216,7 @@ export default function MoneyExchangeForm() {
                     {alert.message}
                 </Alert>
             </Snackbar>
+        </div>
         </div>
     );
 }
